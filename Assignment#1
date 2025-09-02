@@ -1,41 +1,48 @@
-package com.example.lifecycleexample
+package com.example.lifecycleexample;
 
-import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle;
+import android.util.Log;
 
-class MainActivity : AppCompatActivity() {
+import androidx.appcompat.app.AppCompatActivity;
 
-    private val TAG = "ActivityLifecycle"
+public class MainActivity extends AppCompatActivity {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        Log.d(TAG, "onCreate: Activity is created (setup UI, variables).")
+    private static final String TAG = "ActivityLifecycle";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate: Activity is created (setup UI, variables).");
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart: Activity is now visible.")
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart: Activity is now visible.");
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume: Activity is now in the foreground and interactive.")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: Activity is now in the foreground and interactive.");
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause: Activity is partially hidden, pause tasks or save data.")
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: Activity is partially hidden, pause tasks or save data.");
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop: Activity is completely hidden, release resources.")
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop: Activity is completely hidden, release resources.");
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy: Activity is destroyed, cleanup done.")
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: Activity is destroyed, cleanup done.");
     }
 }
