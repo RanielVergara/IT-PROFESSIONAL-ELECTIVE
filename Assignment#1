@@ -1,80 +1,41 @@
-package com.example.myfirstapp
+package com.example.lifecycleexample
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.myfirstapp.ui.theme.MyFirstAppTheme
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
-    private val TAG = "MainActivityLifecycle"
+    private val TAG = "ActivityLifecycle"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate called")
-        setContent {
-            MyFirstAppTheme {
-                Greeting(name = "Raniel")
-            }
-        }
+        setContentView(R.layout.activity_main)
+        Log.d(TAG, "onCreate: Activity is created (setup UI, variables).")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.d(TAG, "onStart called")
+        Log.d(TAG, "onStart: Activity is now visible.")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume called")
+        Log.d(TAG, "onResume: Activity is now in the foreground and interactive.")
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d(TAG, "onPause called")
+        Log.d(TAG, "onPause: Activity is partially hidden, pause tasks or save data.")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d(TAG, "onStop called")
+        Log.d(TAG, "onStop: Activity is completely hidden, release resources.")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d(TAG, "onDestroy called")
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        buildAnnotatedString {
-            append("Hello, I'm ")
-            withStyle(style = SpanStyle(color = Color.Blue)) {
-                append(name)
-            }
-            append("!")
-        },
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyFirstAppTheme {
-        Box {
-            Greeting("Raniel")
-        }
+        Log.d(TAG, "onDestroy: Activity is destroyed, cleanup done.")
     }
 }
