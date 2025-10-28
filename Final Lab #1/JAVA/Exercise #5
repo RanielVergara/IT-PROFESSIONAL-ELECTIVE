@@ -1,1 +1,53 @@
+package com.example.androiduilab5;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Animation;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageSwitcher imageSwitcher;
+    Button btnSwitch;
+    int currentIndex = 0;
+    int[] images = {R.drawable.zoro, R.drawable.madara, R.drawable.aizen};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        imageSwitcher = findViewById(R.id.imageSwitcher);
+        btnSwitch = findViewById(R.id.btnSwitchImage);
+
+        imageSwitcher.setFactory(() -> {
+            ImageView imageView = new ImageView(getApplicationContext());
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
+                    ImageSwitcher.LayoutParams.MATCH_PARENT,
+                    ImageSwitcher.LayoutParams.MATCH_PARENT));
+            return imageView;
+        });
+
+        Animation fadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        Animation fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+        imageSwitcher.setInAnimation(fadeIn);
+        imageSwitcher.setOutAnimation(fadeOut);
+
+        imageSwitcher.setImageResource(images[currentIndex]);
+
+        btnSwitch.setOnClickListener(v -> {
+            currentIndex++;
+            if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            imageSwitcher.setImageResource(images[currentIndex]);
+        });
+    }
+}
+
+
+
 
