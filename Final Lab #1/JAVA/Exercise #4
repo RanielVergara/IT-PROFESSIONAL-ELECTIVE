@@ -1,1 +1,40 @@
+package com.example.androiduilab4;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ToggleButton;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button buttonStandard = findViewById(R.id.buttonStandard);
+        ImageButton imageButton = findViewById(R.id.imageButton);
+        ToggleButton toggleButton = findViewById(R.id.toggleButton);
+
+        buttonStandard.setOnClickListener(v ->
+                Toast.makeText(MainActivity.this, "Standard Button Clicked!", Toast.LENGTH_SHORT).show()
+        );
+
+        imageButton.setOnClickListener(v ->
+                Toast.makeText(MainActivity.this, "Image Button Clicked!", Toast.LENGTH_SHORT).show()
+        );
+
+        toggleButton.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                Toast.makeText(MainActivity.this, "Toggle is ON!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MainActivity.this, "Toggle is OFF!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
+
+
+
 
